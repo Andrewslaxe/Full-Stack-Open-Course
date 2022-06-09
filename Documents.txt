@@ -1,0 +1,5 @@
+Html Basics, https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/HTML_basics
+CSS, https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/CSS_basics
+Html forms https://developer.mozilla.org/en-US/docs/Learn/Forms/Your_first_form
+Learn React https://egghead.io/lessons/react-a-beginners-guide-to-react-introduction https://egghead.io/lessons/react-use-create-react-app-to-setup-a-simple-react-app
+You Don't know js https://github.com/getify/You-Dont-Know-JS/blob/1st-ed/README.md  https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript  https://javascript.info/
