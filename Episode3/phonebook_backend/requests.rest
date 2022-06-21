@@ -1,0 +1,15 @@
+GET https://afternoon-temple-96013.herokuapp.com/api/persons
+###
+GET https://afternoon-temple-96013.herokuapp.com/api/persons/2
+###
+DELETE https://afternoon-temple-96013.herokuapp.com/api/persons/62b14e611870f49f335dd623
+###
+POST https://afternoon-temple-96013.herokuapp.com/api/persons
+Content-Type: application/json
+
+{
+  "name": "Jaime Peraza",
+  "number": "12346578"
+} 
+
+  

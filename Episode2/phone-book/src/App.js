@@ -98,6 +98,7 @@ const App = () => {
 				})
 				.catch((error) => {
 					setAlertMessage(`Error to create ${personObject.name} in server`)
+					console.log(error.response.data)
 					setStatus("fail")
 				})
 			setTimeout(() => {

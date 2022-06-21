@@ -6,7 +6,7 @@ const App = () => {
 	const [notes, setNotes] = useState([])
 	const [newNote, setNewNote] = useState("")
 	const [showAll, setShowAll] = useState(true)
-	const [errorMessage, setErrorMessage] = useState("some error happened...")
+	const [errorMessage, setErrorMessage] = useState(null)
 
 	const Notification = ({ message }) => {
 		if (message === null) {
@@ -27,7 +27,7 @@ const App = () => {
 		const changedNote = { ...note, important: !note.important }
 
 		noteService
-			.update(changedNote)
+			.update(id, changedNote)
 			.then((returnedNote) => {
 				setNotes(notes.map((note) => (note.id !== id ? note : returnedNote)))
 			})
@@ -41,12 +41,14 @@ const App = () => {
 				setNotes(notes.filter((n) => n.id !== id))
 			})
 	}
+
 	const addNote = (event) => {
 		event.preventDefault()
 		const noteObject = {
 			content: newNote,
 			date: new Date().toISOString(),
 			important: Math.random() > 0.5,
+			id: notes.length + 1,
 		}
 		noteService.create(noteObject).then((returnedNote) => {
 			setNotes(notes.concat(returnedNote))

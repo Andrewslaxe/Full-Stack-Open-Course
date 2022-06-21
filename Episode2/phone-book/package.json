@@ -1,7 +1,6 @@
 {
 	"name": "phone-book",
 	"version": "0.1.0",
-	"private": true,
 	"dependencies": {
 		"@testing-library/jest-dom": "^5.16.4",
 		"@testing-library/react": "^13.3.0",
@@ -14,11 +13,12 @@
 	},
 	"scripts": {
 		"start": "react-scripts --openssl-legacy-provider start",
-		"build": "react-scripts build",
+		"build": "react-scripts --openssl-legacy-provider build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
 		"server": "json-server -p3001 --watch db.json"
 	},
+	"proxy": "http://localhost:3001",
 	"eslintConfig": {
 		"extends": [
 			"react-app",
