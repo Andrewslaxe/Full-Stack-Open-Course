@@ -1,0 +1,31 @@
+.blog_title_author {
+	border: solid;
+	border-width: 1px;
+	margin-bottom: 5px;
+	padding-left: 2px;
+	padding-top: 5px;
+}
+label {
+	display: inline-block;
+	width: 80px;
+}
+
+.success {
+	color: rgb(94, 187, 94);
+	background: lightgrey;
+	font-size: 20px;
+	border-style: solid;
+	border-radius: 5px;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+
+.error {
+	color: rgb(144, 69, 69);
+	background: lightgrey;
+	font-size: 20px;
+	border-style: solid;
+	border-radius: 5px;
+	padding: 10px;
+	margin-bottom: 10px;
+}
