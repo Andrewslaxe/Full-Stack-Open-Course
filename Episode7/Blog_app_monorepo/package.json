@@ -1,0 +1,20 @@
+{
+  "name": "blog_app",
+  "version": "1.0.0",
+  "description": "",
+  "workspaces": [
+    "api",
+    "app"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run build --workspace=app",
+    "start": "npm run start --workspaces=api",
+    "dev:app": "npm run start --workspaces=app",
+    "dev:api": "npm run dev --workspaces=api"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+
