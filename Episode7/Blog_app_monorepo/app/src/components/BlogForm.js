@@ -1,53 +1,75 @@
-import { useState } from 'react'
+import {useState} from 'react'
 
-const BlogForm = ({ AddBlog }) => {
-	const [newBlog, setNewBlog] = useState({ title: '', author: '', url: '' })
+import {setNotification} from "../reducers/notificationReducer";
+import {createBlog} from "../reducers/blogReducer";
+import {connect} from "react-redux";
+import {Button, Form} from "react-bootstrap";
 
-	const addBlog = (event) => {
-		event.preventDefault()
-		AddBlog(newBlog)
-		setNewBlog({ title: '', author: '', url: '' })
-	}
+const BlogForm = (props) => {
+  const [newBlog, setNewBlog] = useState({title: '', author: '', url: ''})
 
-	return (
-		<div>
-			<h2>Create new blog</h2>
-			<form onSubmit={addBlog}>
-				<div>
-					<label>Title</label>
-					<input
-						className='title_form'
-						value={newBlog.title}
-						onChange={({ target }) =>
-							setNewBlog({ ...newBlog, title: target.value })
-						}
-					/>
-				</div>
-				<div>
-					<label>Author</label>
-					<input
-						className='author_form'
-						value={newBlog.author}
-						onChange={({ target }) =>
-							setNewBlog({ ...newBlog, author: target.value })
-						}
-					/>
-				</div>
-				<div>
-					<label>Url</label>
-					<input
-						className='url_form'
-						type='url'
-						value={newBlog.url}
-						onChange={({ target }) =>
-							setNewBlog({ ...newBlog, url: target.value })
-						}
-					/>
-				</div>
-				<button type='submit'>create</button>
-			</form>
-		</div>
-	)
+  const addBlog = (event) => {
+    event.preventDefault()
+    props.createBlog(newBlog)
+    props.setNotification(`a new blog ${newBlog.title} by ${newBlog.author} added`, 'success', 5)
+    setNewBlog({title: '', author: '', url: ''})
+  }
+
+  return (
+    <div>
+      <h2>Create new blog</h2>
+      <Form onSubmit={addBlog}>
+        <Form.Label>Title</Form.Label>
+        <Form.Group className={"col-3 mb-3"} id={'title'}>
+          <Form.Control
+            className='title_form'
+            value={newBlog.title}
+            placeholder={'Enter title'}
+            onChange={({target}) =>
+              setNewBlog({...newBlog, title: target.value})
+            }
+          />
+        </Form.Group>
+        <Form.Group className={"col-3 mb-3"}>
+          <Form.Label>Author</Form.Label>
+          <Form.Control
+            className='author_form'
+            value={newBlog.author}
+            placeholder={'Enter author'}
+            onChange={({target}) =>
+              setNewBlog({...newBlog, author: target.value})
+            }
+          />
+        </Form.Group>
+        <Form.Group className={"col-3 mb-3"}>
+          <Form.Label>Url</Form.Label>
+          <Form.Control
+            className='url_form'
+            type='url'
+            value={newBlog.url}
+            placeholder={'Enter url'}
+            onChange={({target}) =>
+              setNewBlog({...newBlog, url: target.value})
+            }
+          />
+        </Form.Group>
+        <Button type='submit'>create</Button>
+      </Form>
+    </div>
+  )
 }
 
-export default BlogForm
+const mapStateToProps = (state) => {
+  return {
+    notification: state.notification,
+    blogs: state.blogs
+  }
+}
+
+const mapDispatchToProps = {
+  setNotification,
+  createBlog
+}
+
+const connectedBlogForm = connect(mapStateToProps, mapDispatchToProps)(BlogForm)
+export default connectedBlogForm
