@@ -1,0 +1,69 @@
+* {
+  font-family: "SF Pro Display";
+}
+
+body {
+  background-color: #51e2f5;
+  color: #003546;
+}
+
+.mainPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+}
+
+.anecdoteTitle {
+  font-size: 4rem;
+  font-weight: 600;
+  text-align: center;
+  margin: 1rem;
+  background-color: #003546;
+  color: white;
+  padding: 1rem;
+}
+
+.anecdote {
+  font-size: 3rem;
+  font-weight: 600;
+  text-align: center;
+  margin: 0 1rem;
+}
+
+.votes {
+  font-size: 3rem;
+  font-weight: 600;
+  text-align: center;
+  margin: 0 1rem;
+  width: 80%;
+  color: #003E50;
+}
+
+.mostVoted {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  background-color: #003546;
+}
+
+.mostVoted .anecdote {
+  color: white;
+}
+
+button {
+  background-color: #51e2f5;
+  color: #003546;
+  border: 2px solid #003546;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #003546;
+  color: #51e2f5;
+}

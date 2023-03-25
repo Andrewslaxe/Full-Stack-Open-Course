@@ -1,0 +1,51 @@
+* {
+  font-family: "SF Pro Display";
+  margin: 0px;
+  padding: 0px;
+}
+
+
+
+body {
+  background-color: #0049B7;
+  color: white;
+}
+
+button {
+  background-color: #0049B7;
+  color: white;
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 20px;
+  transition: all 0.3s ease;
+  width: 100px;
+}
+
+button:hover {
+  background-color: white;
+  color: #0049B7;
+}
+
+li {
+  list-style-type: none;
+}
+
+.mainPage {
+  height: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  font-size: 50px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.statistics {
+  margin-top: 30px;
+  text-align: center;
+}
