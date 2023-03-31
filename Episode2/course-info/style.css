@@ -1,0 +1,35 @@
+* {
+  font-family: SF Pro Display;
+  background-color: #324B4F;
+  color: #F9F871;
+  margin: 0;
+  padding: 0;
+}
+
+.course {
+  margin: 50px 100px;
+}
+
+.course h1 {
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+  padding: 0;
+  margin: 30px 0px;
+}
+
+.course .part {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 5px 0px;
+  padding: 0;
+  width: 90%;
+}
+
+.course .numberExercises {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 20px 0px;
+  padding: 0;
+  color: #ABDB77;
+}

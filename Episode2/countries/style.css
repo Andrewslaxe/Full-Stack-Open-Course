@@ -1,0 +1,77 @@
+* {
+  font-family: SF Pro Display;
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  background-color: #B8D9D2;
+  text-align: center;
+}
+
+body form {
+  margin-top: 100px;
+}
+
+body label {
+  font-size: 40px;
+  color: #000000;
+}
+
+body input {
+  font-size: 40px;
+  margin-top: 20px;
+  margin-left: 40px;
+  margin-bottom: 20px;
+  border: 0px;
+  border-bottom: 2px solid #000000;
+  background-color: #B8D9D2;
+}
+
+input:focus {
+  outline: none;
+}
+
+.showCountries {
+  font-size: 40px;
+  margin-top: 50px;
+}
+
+.name {
+  font-weight: bold;
+  font-size: 55px;
+}
+
+.capital {
+  font-size: 40px;
+}
+
+.flag {
+  width: 300px;
+  height: 200px;
+}
+
+.languages {
+  margin-top: 30px;
+}
+
+.showCountries button {
+  font-size: 40px;
+  margin: 10px 0px;
+  border: 2px solid #000000;
+  border-radius: 10px;
+  background-color: #B8D9D2;
+  margin-left: 20px;
+  cursor: pointer;
+  width: 150px;
+}
+
+.showCountries button:hover {
+  background-color: #000000;
+  color: #B8D9D2;
+}
+
+.weather img {
+  width: 100px;
+  height: 100px;
+}
