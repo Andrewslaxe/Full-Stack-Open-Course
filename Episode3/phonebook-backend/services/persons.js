@@ -1,6 +1,16 @@
-import personsDB from '../persons.json' assert {type: 'json'}
+let persons = null
 
-let persons = personsDB
+async function fetchInfo () {
+  const response = await fetch('D:/Courses/Full-Stack-Open-Course/Episode3/phonebook-backend/persons.json')
+  const data = await response.json()
+  persons = data
+}
+
+async function getDB () {
+  if (!persons) await fetchInfo()
+}
+
+getDB()
 
 const get = () => {
   return persons
@@ -38,4 +48,4 @@ const update = (id, person) => {
   return false
 }
 
-export default { get: get, getById: getById, deleteById: deleteById, post: post, update: update }
+export default { get, getById, deleteById, post, update, persons }
