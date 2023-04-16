@@ -1,5 +1,5 @@
 import axios from 'axios'
-const API_URL = 'https://phonebook-backend-andrewslaxe.vercel.app/api/persons'
+const API_URL = import.meta.env.VITE_BACKEND_KEY
 
 const postContact = (note) => {
   return axios.post(API_URL, note)
