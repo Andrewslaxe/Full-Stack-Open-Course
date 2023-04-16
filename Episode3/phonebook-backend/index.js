@@ -40,6 +40,8 @@ app.put('/api/persons/:id', (request, response) => {
   result ? response.json(result) : response.status(404).end()
 })
 
+app.get('', (_, response) => response.send('Hello World!'))
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })
