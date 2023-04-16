@@ -1,5 +1,4 @@
 import axios from 'axios'
-
 const API_URL = 'https://phonebook-backend-andrewslaxe.vercel.app/api/persons'
 
 const postContact = (note) => {
