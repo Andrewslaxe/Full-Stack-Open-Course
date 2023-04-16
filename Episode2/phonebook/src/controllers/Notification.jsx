@@ -1,11 +1,18 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
-export const Notification = ({ message, time, type }) => {
+export const Notification = ({ notification }) => {
   const [show, setShow] = useState(true)
-  setTimeout(() => setShow(false), time)
+  useEffect(() => {
+    setShow(true)
+  }, [notification.message])
+
+  setTimeout(() => {
+    setShow(false)
+  }, notification.time)
+
   return (
-    <div>
-      {show ? <h1>{message}</h1> : null}
+    <div className='notification'>
+      {show ? <h1 className={notification.type}>{notification.message}</h1> : null}
     </div>
   )
 }

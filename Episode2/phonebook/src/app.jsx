@@ -11,20 +11,21 @@ export const App = () => {
   const [persons, setPersons] = useState([])
   const [filter, setFilter] = useState('')
   const [personsToShow, setPersonsToShow] = useState([])
-  const [notification, setNotification] = useState({ message: 'Notification', type: 'error' })
+  const [notification, setNotification] = useState({ type: '', message: '', time: 0 })
+
   useEffect(() => {
     contact.getAll().then(response => setPersons(response))
-  }, [persons])
+  }, [])
 
   return (
     <div className='app'>
       <h1>Phonebook</h1>
-      <Notification message={notification.message} type={notification.type} time='5000' />
+      <Notification notification={notification} />
       <FilterContact setFilter={setFilter} setPersonsToShow={setPersonsToShow} persons={persons} />
       <AddContact persons={persons} setPersons={setPersons} setNotification={setNotification} />
       <div className='numbers'>
         <h2>Numbers</h2>
-        {filter === '' ? (<ShowPersons persons={persons} setNotification={setNotification} />) : <ShowPersons persons={personsToShow} setNotification={setNotification} />}
+        {filter === '' ? (<ShowPersons persons={persons} setPersons={setPersons} setNotification={setNotification} />) : <ShowPersons persons={personsToShow} setPersons={setPersons} setNotification={setNotification} />}
       </div>
     </div>
   )

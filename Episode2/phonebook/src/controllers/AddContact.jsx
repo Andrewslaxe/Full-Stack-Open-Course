@@ -1,21 +1,30 @@
 import { useState } from 'react'
 import contact from '../services/Contact'
 
-export const AddContact = ({ persons, setPersons }) => {
+export const AddContact = ({ persons, setPersons, setNotification }) => {
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
-  const addName = (e) => {
+
+  const resetForm = () => {
+    setNewName('')
+    setNewNumber('')
+  }
+
+  const addName = async (e) => {
     e.preventDefault()
     const isAdded = persons.find(person => person.name === newName)
     if (isAdded) {
       if (window.confirm(`${newName} is already added to phonebook, replace the old number?`)) {
-        contact.update(isAdded.id, { name: newName, number: parseInt(newNumber) })
+        contact.update(isAdded.id, { name: newName, number: newNumber })
+        setPersons(persons.map(person => person.id === isAdded.id ? { ...person, number: newNumber } : person))
+        setNotification({ type: 'success', message: `Updated ${newName}`, time: 5000 })
+        resetForm()
       }
     } else {
-      setNewName('')
-      setNewNumber('')
-      setPersons(persons.concat({ name: newName, number: parseInt(newNumber) }))
-      contact.create({ name: newName, number: parseInt(newNumber) })
+      const createdContact = await contact.create({ name: newName, number: newNumber })
+      setPersons(persons.concat(createdContact.data))
+      setNotification({ type: 'success', message: `Added ${newName}`, time: 5000 })
+      resetForm()
     }
   }
   return (

@@ -115,3 +115,31 @@ input:focus {
   background-color: white;
   color: #e76f51;
 }
+
+.notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px;
+}
+
+.success {
+  background-color: #2a9d8f;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px;
+  width: 95%;
+}
+
+.error {
+  background-color: #e76f51;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px;
+  width: 95%;
+}
+
+.notification h1 {
+  font-size: 30px;
+  font-weight: 500;
+}

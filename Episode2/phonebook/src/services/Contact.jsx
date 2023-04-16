@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = 'http://localhost:3001/persons'
+const API_URL = 'https://phonebook-backend-andrewslaxe.vercel.app/api/persons'
 
 const postContact = (note) => {
   return axios.post(API_URL, note)
