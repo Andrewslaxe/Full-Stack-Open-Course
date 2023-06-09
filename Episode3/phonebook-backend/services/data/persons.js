@@ -32,7 +32,7 @@ async function getDB () {
   if (!persons) await fetchInfo()
 }
 
-getDB()
+await getDB()
 
 const get = () => {
   return persons

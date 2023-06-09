@@ -2,12 +2,15 @@ import express from 'express'
 import morgan from 'morgan'
 import cors from 'cors'
 
-import persons from './services/persons.js'
-import { info } from './services/info.js'
+import persons from './services/data/persons.js'
+import { connectToDB } from './services/db/connect.js'
+import { info } from './services/data/info.js'
 import { configuration } from './services/middleware/morgan.js'
 
 const PORT = process.env.PORT || 3001
 const app = express()
+
+await connectToDB()
 
 app.use(cors())
 app.use(morgan(configuration))
