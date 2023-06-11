@@ -15,16 +15,24 @@ export const AddContact = ({ persons, setPersons, setNotification }) => {
     const isAdded = persons.find(person => person.name === newName)
     if (isAdded) {
       if (window.confirm(`${newName} is already added to phonebook, replace the old number?`)) {
-        contact.update(isAdded.id, { name: newName, number: newNumber })
-        setPersons(persons.map(person => person.id === isAdded.id ? { ...person, number: newNumber } : person))
-        setNotification({ type: 'success', message: `Updated ${newName}`, time: 5000 })
-        resetForm()
+        try {
+          await contact.update(isAdded.id, { name: newName, number: newNumber })
+          setPersons(persons.map(person => person.id === isAdded.id ? { ...person, number: newNumber } : person))
+          setNotification({ type: 'success', message: `Updated ${newName}`, time: 5000 })
+          resetForm()
+        } catch (error) {
+          setNotification({ type: 'error', message: error.response.data.error, time: 5000 })
+        }
       }
     } else {
-      const createdContact = await contact.create({ name: newName, number: newNumber })
-      setPersons(persons.concat(createdContact.data))
-      setNotification({ type: 'success', message: `Added ${newName}`, time: 5000 })
-      resetForm()
+      try {
+        const createdContact = await contact.create({ name: newName, number: newNumber })
+        setPersons(persons.concat(createdContact.data))
+        setNotification({ type: 'success', message: `Added ${newName}`, time: 5000 })
+        resetForm()
+      } catch (error) {
+        setNotification({ type: 'error', message: error.response.data.error, time: 5000 })
+      }
     }
   }
   return (

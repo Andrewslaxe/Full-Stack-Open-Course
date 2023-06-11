@@ -2,13 +2,17 @@ import { useEffect, useState } from 'react'
 
 export const Notification = ({ notification }) => {
   const [show, setShow] = useState(true)
+
   useEffect(() => {
     setShow(true)
-  }, [notification.message])
+    const timeoutId = setTimeout(() => {
+      setShow(false)
+    }, notification.time)
 
-  setTimeout(() => {
-    setShow(false)
-  }, notification.time)
+    return () => {
+      clearTimeout(timeoutId)
+    }
+  }, [notification.message])
 
   return (
     <div className='notification'>
