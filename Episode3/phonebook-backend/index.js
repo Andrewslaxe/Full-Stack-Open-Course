@@ -1,50 +1,74 @@
 import express from 'express'
 import morgan from 'morgan'
 import cors from 'cors'
+import dotenv from 'dotenv'
 
-import persons from './services/data/persons.js'
+import people from './services/data/people.js'
 import { connectToDB } from './services/db/connect.js'
 import { info } from './services/data/info.js'
 import { configuration } from './services/middleware/morgan.js'
+import errorHandler from './services/middleware/errorHandler.js'
+import unkonwnEndpoint from './services/middleware/unknownEndpoint.js'
 
-const PORT = process.env.PORT || 3001
+dotenv.config()
 const app = express()
+const PORT = process.env.PORT
+const DBURL = process.env.MONDODB_URL
 
-await connectToDB()
-
+await connectToDB(DBURL)
 app.use(cors())
 app.use(morgan(configuration))
 app.use(express.json())
 
-app.get('/api/persons', (_, response) => response.json(persons.get()))
-
-app.get('/api/persons/:id', (request, response) => {
-  const id = Number(request.params.id)
-  persons.getById(id) ? response.json(persons.getById(id)) : response.status(404).end()
+app.get('/api/people', (_, response) => {
+  people.getPeople().then(people => {
+    response.send(people)
+    response.status(200)
+  })
 })
 
-app.get('/info', (_, response) => response.send(info()))
-
-app.delete('/api/persons/:id', (request, response) => {
-  const id = Number(request.params.id)
-  persons.deleteById(id) ? response.status(204).end() : response.status(404).end()
+app.get('/api/people/:id', (request, response, next) => {
+  people.getById(request.params.id).then(person => {
+    response.json(person)
+  }).catch(error => {
+    next(error)
+  })
 })
 
-app.post('/api/persons', (request, response) => {
+app.post('/api/people', (request, response, next) => {
   const person = request.body
-  const result = persons.post(person)
-  result.error ? response.json(result.error) : response.json(result)
+  const result = people.post(person)
+  result.then(result => {
+    response.status(201).json(result)
+  }).catch(error => {
+    next(error)
+  })
 })
 
-app.put('/api/persons/:id', (request, response) => {
-  const id = Number(request.params.id)
+app.put('/api/people/:id', (request, response, next) => {
   const person = request.body
-  const result = persons.update(id, person)
-  result ? response.json(result) : response.status(404).end()
+  people.update(request.params.id, person).then(result => {
+    response.status(200).json(result)
+  }).catch(error => {
+    next(error)
+  })
 })
+
+app.delete('/api/people/:id', (request, response, next) => {
+  people.deleteById(request.params.id).then(result => {
+    response.status(204).json(result)
+  }).catch(error => {
+    next(error)
+  })
+})
+
+app.get('/api/info', async (_, response) => response.send(await info()))
 
 app.get('/', (_, response) => response.send('Hello World!'))
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })
+
+app.use(errorHandler)
+app.use(unkonwnEndpoint)
